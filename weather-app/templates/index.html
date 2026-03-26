@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Weather Forecasting Application with World Map Background">
+    <meta name="keywords" content="weather, forecast, world map, temperature">
+    <title>WeatherWise - Global Weather Forecasting</title>
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+</head>
+<body>
+    <!-- World Map Background -->
+    <div class="world-map-bg"></div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <span>Dark Mode</span>
+    </button>
+
+    <div class="container">
+        <!-- Centered Header -->
+        <div class="app-header">
+            <h1 class="app-title">
+                Weather<span>Wise</span>
+            </h1>
+            <p class="app-subtitle">Global Weather Forecasting</p>
+        </div>
+        
+        <!-- Search Section -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Search for a city..." class="search-input">
+                <button id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i>
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Fetching weather data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message hidden"></div>
+
+        <!-- Weather Card -->
+        <div id="weatherCard" class="weather-card hidden">
+            <!-- Current Date and Time -->
+            <div class="datetime">
+                <span>
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="datetime"></span>
+                </span>
+                <span>
+                    <i class="far fa-clock"></i>
+                    <span id="clock"></span>
+                </span>
+            </div>
+            
+            <!-- Current Weather -->
+            <div class="current-weather">
+                <div class="location">
+                    <h2>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="cityName"></span>
+                    </h2>
+                    <p>
+                        <i class="fas fa-flag"></i>
+                        <span id="country"></span>
+                    </p>
+                </div>
+                
+                <div class="weather-main">
+                    <div class="weather-icon">
+                        <img id="weatherIcon" src="" alt="Weather icon">
+                    </div>
+                    <div class="temperature">
+                        <span id="temperature"></span><small>°C</small>
+                    </div>
+                </div>
+                
+                <div class="weather-description">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span id="description"></span>
+                </div>
+            </div>
+            
+            <!-- Weather Details Grid -->
+            <div class="weather-details">
+                <div class="detail-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Feels Like</span>
+                        <span class="detail-value" id="feelsLike"></span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-tint"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Humidity</span>
+                        <span class="detail-value" id="humidity">%</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-wind"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Wind Speed</span>
+                        <span class="detail-value" id="windSpeed">m/s</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-compress-alt"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Pressure</span>
+                        <span class="detail-value" id="pressure">hPa</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div class="forecast-section">
+                <h3>
+                    <i class="fas fa-calendar-week"></i>
+                    5-Day Forecast
+                </h3>
+                <div class="forecast-container" id="forecastContainer">
+                    <!-- Forecast items will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
